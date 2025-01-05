@@ -1,31 +1,85 @@
 -- 🔻 This is the "test.sql" File 🔻
 
--- USE Games;
--- SELECT DATABASE();
+-- DROP TABLE users;
 
-CREATE TABLE PopularGames (
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
-    release_year INT,
-    ratings DECIMAL
-)
+    age INT
+);
 
--- DROP Table PopularGames;
--- SHOW TABLES;
--- SHOW COLUMNS FROM PopularGames;
--- DESCRIBE PopularGames;
+INSERT INTO users (name, age)
+VALUES ("Bob", 30),
+       ("Charlie", 40),
+       ("David", 50);
 
--- INSERT INTO PopularGames (name, release_year, ratings)
--- VALUES ("GTA 6", 2025, 9.7);
+SELECT * FROM users;
 
-INSERT INTO PopularGames (name, release_year, ratings)
-VALUES ("Resident Evil 4 Remake", 2023, 8.7),
-       ("Apex Legends", 2019, 7.6),
-       ("Silent Hill 2 Remake", 2024, 8.3),
-       ("Cyberpunk 2077", 2020, 7.2);
+-- Let's Say if you forgot to add the "WHERE" Clause
+UPDATE users 
+    SET age=100
+    -- WHERE name="Alex";
 
--- SELECT * FROM PopularGames;
+SELECT * FROM users;
 
-SELECT name FROM PopularGames;
-SELECT release_year FROM PopularGames;
-SELECT ratings FROM PopularGames;
-SELECT name, release_year, ratings FROM PopularGames;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- DROP TABLE MOVIES;
+
+CREATE TABLE MOVIES (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(50),
+    release_year INT
+);
+
+INSERT INTO MOVIES (
+    -- id, 
+    title, 
+    release_year
+) 
+VALUES ("Movie #1", 2001),
+       ("Movie #2", 2002),
+       ("Movie #3", 2003),
+       ("Movie #4", 2004),
+       ("Movie #5", 2005),
+       ("Movie #6", 2006),
+       ("Movie #7", 2007),
+       ("Movie #8", 2008),
+       ("Movie #9", 2009),
+       ("Movie #10", 2010);
+
+-- SELECT * FROM MOVIES;
+-- SELECT * FROM MOVIES WHERE title="Movie #3";
+-- SELECT id FROM MOVIES WHERE title="Movie #3";
+-- SELECT title FROM MOVIES WHERE title="Movie #3";
+-- SELECT release_year FROM MOVIES WHERE title="Movie #3";
+-- SELECT title, release_year FROM MOVIES WHERE title="Movie #3";
+
+SELECT id AS movie_id FROM MOVIES;
+SELECT title AS movie_title FROM MOVIES;
+SELECT release_year AS movie_release_year FROM MOVIES;
+
+SELECT title AS movie_3_title FROM MOVIES WHERE title="Movie #3";
