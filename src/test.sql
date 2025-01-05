@@ -2,6 +2,8 @@
 
 -- DROP TABLE users;
 
+-- USE games;
+
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
@@ -15,14 +17,14 @@ VALUES ("Bob", 30),
 
 SELECT * FROM users;
 
--- Let's Say if you forgot to add the "WHERE" Clause
-UPDATE users 
-    SET age=100
-    -- WHERE name="Alex";
+-- DELETE FROM users WHERE id=1;
+-- DELETE FROM users WHERE name="David";
+
+-- Delete the entire table 👉🏻 🚫 Dangerous 🚫
+DELETE FROM users;
+-- WHERE id=2
 
 SELECT * FROM users;
-
-
 
 
 
