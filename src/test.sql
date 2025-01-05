@@ -1,5 +1,85 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+
+-- 🔸 DataTypes 🔸
+-- 🔹 CHAR 🔹
+-- 🔹 VARCHAR 🔹
+-- 🔹 INT 🔹
+-- 🔹 DATE 🔹
+-- 🔹 TIME 🔹
+-- 🔹 DATETIME 🔹
+-- 🔹 DECIMAL 🔹
+
+
+-- 🔻 Advanced Date-Time Table 🔻
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255),
+    content VARCHAR(255),
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO comments (author, content)
+VALUES ("HuXn", "This is a greate Article"),
+       ("Jordan", "I have a question about this topic"),
+       ("Charlie", "Thanks for sharing this information");
+
+SELECT * FROM comments;
+
+-- Let's update the content of the comment with id=1
+UPDATE comments SET content="Changed the Comment!" WHERE id=1;
+
+SELECT * FROM comments;
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
+
+-- 🔻 What is the difference between DATE & Time & DateTime? 🔻
+CREATE TABLE events (
+    event_date DATE,
+    event_time TIME,
+    event_datetime DATETIME,
+);
+
+INSERT INTO events (event_date, event_time, event_datetime)
+VALUES ("2024-03-07", "14:30:00", "2024-03-07 14:30:00");
+
+SELECT * FROM events;
+
+
+-- 🔻 Functions for Dates 🔻
+
+SELECT CURRENT_DATE(); -- T 👉🏻 2025-01-05
+
+SELECT CURRENT_TIME(); -- T 👉🏻 13:31:23
+
+SELECT CURRENT_TIMESTAMP(); -- T 👉🏻 2025-01-05 13:33:41
+
+SELECT NOW(); -- T 👉🏻 2025-01-05 13:34:25
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
+
 -- DROP TABLE users;
 
 -- USE games;
@@ -28,24 +108,7 @@ SELECT * FROM users;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-------------------------------------------------------
 
 
 
