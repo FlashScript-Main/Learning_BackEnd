@@ -1,29 +1,31 @@
 -- 🔻 This is the "test.sql" File 🔻
 
--- DROP TABLE users;
+SELECT CURRENT_DATE();
 
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50),
-    age INT
+SELECT CURRENT_TIME();
+
+SELECT CURRENT_TIMESTAMP();
+
+SELECT NOW();
+
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255),
+    content VARCHAR(255),
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name, age)
-VALUES ("Bob", 30),
-       ("Charlie", 40),
-       ("David", 50);
+INSERT INTO comments (author, content)
+VALUES ("HuXn", "This is a greate Article"),
+       ("Jordan", "I have a question about this topic"),
+       ("Charlie", "Thanks for sharing this information");
 
-SELECT * FROM users;
+SELECT * FROM comments;
 
-UPDATE users SET name="Ali" WHERE id=1;
+UPDATE comments SET content="Changed the Comment!" WHERE id=1;
 
-UPDATE users SET age=18 WHERE name="Ali";
-
-SELECT * FROM users;
-
-
-
-
+SELECT * FROM comments;
 
 
 
