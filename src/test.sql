@@ -1,5 +1,191 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+CREATE TABLE movies (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(50),
+    release_year INT
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
+
+
+-- DROP TABLE users;
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INT
+);
+
+INSERT INTO users (first_name, last_name, email, password, age)
+VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25),
+       ("John", "Doe", "john.doe@example.com", "password", 30),
+       ("Bob", "Smith", "bob.smith@example.com", "password", 35),
+       ("Alice", "Brown", "alice.brown@example.com", "password", 40),
+       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45),
+       ("David", "Johnson", "david.johnson@example.com", "password", 50),
+       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
+
+SELECT * FROM users;
+
+
+
+-- 🔸 Functions 🔸
+
+-- 🔹 SUBSTRING() 🔹
+SELECT SUBSTRING("Hello World", 7, 5); -- T 👉🏻 World
+
+SELECT SUBSTRING("HuXn", 3); -- T 👉🏻 Xn
+
+SELECT first_name FROM users;
+-- T 👇🏻
+-- Jane
+-- John
+-- Bob
+-- Alice
+-- Charlie
+-- David
+-- Emily
+
+SELECT SUBSTRING(first_name, 2) FROM users; 
+-- T 👇🏻
+-- ane
+-- ohn
+-- ob
+-- lice
+-- harlie
+-- avid
+-- mily
+
+SELECT SUBSTRING(first_name, 1, 7) FROM users; 
+-- T 👇🏻
+-- Jane
+-- John
+-- Bob
+-- Alice
+-- Charlie
+-- David
+-- Emily
+
+
+
+-- 🔹 REPLACE() 🔹
+SELECT REPLACE("Hello World", "World", "Universe"); -- T 👉🏻 Hello Universe
+SELECT REPLACE("HuXn", "X", "Z"); -- T 👉🏻 HuZn
+SELECT REPLACE(first_name, "Jane", "Ali") FROM users;
+
+
+
+-- 🔹 REVERSE() 🔹
+SELECT REVERSE("Hello World"); -- T 👉🏻 dlroW olleH
+SELECT REVERSE("HuXn"); -- T 👉🏻 nXuH
+SELECT REVERSE(first_name) FROM users;
+
+
+
+-- 🔹 CHAR_LENGTH() 🔹
+SELECT CHAR_LENGTH("Hello World"); -- T 👉🏻 11
+SELECT CHAR_LENGTH("HuXn"); -- T 👉🏻 4
+SELECT CHAR_LENGTH(first_name) FROM users;
+
+
+
+-- 🔹 LENGTH() 🔹
+SELECT LENGTH("Hello World"); -- T 👉🏻 11
+SELECT LENGTH("HuXn"); -- T 👉🏻 4
+SELECT LENGTH(first_name) FROM users;
+
+
+
+-- 🔹 UPPER() 🔹
+SELECT UPPER("Hello World"); -- T 👉🏻 HELLO WORLD
+
+
+
+-- 🔹 LOWER() 🔹
+SELECT LOWER("Hello World"); -- T 👉🏻 hello world
+
+
+
+-- 🔹 TRIM() 🔹
+SELECT TRIM("Hello World"); -- T 👉🏻 Hello World
+SELECT TRIM("  Hello World  "); -- T 👉🏻 Hello World
+SELECT TRIM("  Hello World  ", " "); -- T 👉🏻 Hello World
+SELECT TRIM("  Hello World  ", "  "); -- T 👉🏻 Hello World
+
+
+
+
+-------------------------------------------------------
+
 
 -- 🔸 DataTypes 🔸
 -- 🔹 CHAR 🔹
@@ -31,12 +217,6 @@ SELECT * FROM comments;
 UPDATE comments SET content="Changed the Comment!" WHERE id=1;
 
 SELECT * FROM comments;
-
-
-
-
-
-
 
 
 
