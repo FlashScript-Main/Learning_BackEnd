@@ -4,14 +4,22 @@ CREATE TABLE movies (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50),
     release_year INT
+);
+
+INSERT INTO movies (
+    -- id,
+    title,
+    release_year
 )
+VALUES ("Movie #1", 2001),
+       ("Movie #2", 2002),
+       ("Movie #3", 2003);
 
+SELECT * FROM movies;
 
+SELECT title, release_year FROM movies WHERE title="Movie #3";
 
-
-
-
-
+SELECT id AS movie_id FROM movies WHERE title="Movie #3";
 
 
 
