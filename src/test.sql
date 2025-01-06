@@ -1,26 +1,25 @@
 -- 🔻 This is the "test.sql" File 🔻
 
-CREATE TABLE movies (
+-- DROP TABLE users;
+
+CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(50),
-    release_year INT
+    name VARCHAR(50),
+    age INT
 );
 
-INSERT INTO movies (
-    -- id,
-    title,
-    release_year
-)
-VALUES ("Movie #1", 2001),
-       ("Movie #2", 2002),
-       ("Movie #3", 2003);
+INSERT INTO users (name, age)
+VALUES ("Bob", 30),
+       ("Charlie", 40),
+       ("David", 50);
 
-SELECT * FROM movies;
+SELECT * FROM users;
 
-SELECT title, release_year FROM movies WHERE title="Movie #3";
+UPDATE users SET name="Ali" WHERE id=1;
 
-SELECT id AS movie_id FROM movies WHERE title="Movie #3";
+UPDATE users SET age=18 WHERE name="Ali";
 
+SELECT * FROM users;
 
 
 
