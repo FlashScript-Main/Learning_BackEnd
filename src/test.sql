@@ -1,34 +1,25 @@
 -- 🔻 This is the "test.sql" File 🔻
 
-SELECT CURRENT_DATE();
-
-SELECT CURRENT_TIME();
-
-SELECT CURRENT_TIMESTAMP();
-
-SELECT NOW();
-
-CREATE TABLE comments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    author VARCHAR(255),
-    content VARCHAR(255),
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INT
 );
 
-INSERT INTO comments (author, content)
-VALUES ("HuXn", "This is a greate Article"),
-       ("Jordan", "I have a question about this topic"),
-       ("Charlie", "Thanks for sharing this information");
-
-SELECT * FROM comments;
-
-UPDATE comments SET content="Changed the Comment!" WHERE id=1;
-
-SELECT * FROM comments;
+INSERT INTO users (first_name, last_name, email, password, age)
+VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25),
+       ("John", "Doe", "john.doe@example.com", "password", 30),
+       ("Bob", "Smith", "bob.smith@example.com", "password", 35),
+       ("Alice", "Brown", "alice.brown@example.com", "password", 40),
+       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45),
+       ("David", "Johnson", "david.johnson@example.com", "password", 50),
+       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
 
 
-
+SELECT * FROM users;
 
 
 
@@ -76,6 +67,174 @@ SELECT * FROM comments;
 
 
 
+
+
+
+
+
+-------------------------------------------------------
+
+
+
+-- 🔸 Operators 🔸
+
+-- 🔹 Equal 👉🏻 = 🔹
+SELECT first_name, last_name FROM users WHERE age=35; -- T 👉🏻 Bob Smith
+
+-- 🔹 NOT Equal 👉🏻 != 🔹
+SELECT first_name, last_name FROM users WHERE age!=35; 
+-- T 👇🏻
+-- Jane Doe
+-- John Doe
+-- Alice Brown
+-- Charlie Smith
+-- David Johnson
+-- Emily Brown
+
+-- 🔹 Greater Than 👉🏻 > 🔹
+SELECT * FROM users WHERE age > 40; 
+SELECT * FROM users WHERE LENGTH(first_name) > 5; -- T 👉🏻 Charlie Smith
+
+-- 🔹 Less Than 👉🏻 < 🔹
+SELECT * FROM users WHERE age < 30;
+SELECT * FROM users WHERE LENGTH(last_name) < 4; -- T 👉🏻 Doe
+
+-- 🔹 AND 🔹
+SELECT * FROM users WHERE age > 25 AND age < 35; -- T 👉🏻 John Doe
+SELECT * FROM users WHERE age > 40 AND LENGTH(first_name) > 5; -- T 👉🏻 Charlie Smith
+
+-- 🔹 OR 🔹
+SELECT * FROM users WHERE age < 25 OR age > 50; -- T 👉🏻 Emily Brown
+
+-- 🔹 BETWEEN 🔹
+SELECT * FROM users WHERE age BETWEEN 30 AND 40; 
+-- T 👇🏻
+-- John Doe
+-- Bob Smith
+-- Alice Brown
+
+-- 🔹 IN 🔹
+SELECT * FROM users WHERE age IN (30); -- T 👉🏻 John Doe
+SELECT * FROM users WHERE age IN (30, 40); -- T 👉🏻 John Doe & Alice Brown
+SELECT * FROM users WHERE age IN (30, 40, 50); -- T 👉🏻 John Doe & Alice Brown & David Johnson
+SELECT * FROM users WHERE first_name IN ("Bob"); -- T 👉🏻 Bob Smith
+
+
+-------------------------------------------------------
+
+
+
+-- Let's say you want to find our the average "age" of users grouped by their "first_name"
+SELECT first_name, AVG(age) AS average_age FROM users GROUP BY first_name;
+
+
+
+-------------------------------------------------------
+
+
+
+-- 🔹 COUNT() 🔹
+SELECT COUNT(*) FROM users; -- T 👉🏻 7
+
+SELECT COUNT(first_name) FROM users; -- T 👉🏻 7
+
+SELECT COUNT(*) FROM users WHERE first_name='David'; -- T 👉🏻 1
+
+SELECT COUNT(*) FROM users WHERE first_name='David' AND last_name='Johnson'; -- T 👉🏻 1
+
+
+-- 🔹 MIN() & MAX() 🔹
+SELECT MIN(age) FROM users; -- T 👉🏻 10
+
+SELECT MAX(age) FROM users; -- T 👉🏻 55
+
+
+-- 🔹 SUM() 🔹
+SELECT SUM(age) FROM users; -- T 👉🏻 280
+
+
+-- 🔹 AVG() 🔹
+SELECT AVG(age) FROM users; -- T 👉🏻 40.00
+
+
+
+-------------------------------------------------------
+
+
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INT
+);
+
+INSERT INTO users (first_name, last_name, email, password, age)
+VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25),
+       ("John", "Doe", "john.doe@example.com", "password", 30),
+       ("Bob", "Smith", "bob.smith@example.com", "password", 35),
+       ("Alice", "Brown", "alice.brown@example.com", "password", 40),
+       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45),
+       ("David", "Johnson", "david.johnson@example.com", "password", 50),
+       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
+
+
+SELECT * FROM users;
+
+
+-- "%" wildcard 👉🏻 This wildcard matches zero or more characters
+SELECT * FROM users WHERE first_name LIKE "%j%";
+
+SELECT * FROM users WHERE first_name LIKE "%vid%";
+
+
+-- "_" wildcard 👉🏻 This wildcard matches exactly one character only
+SELECT * FROM users WHERE first_name LIKE "_mil_"; -- Emily
+
+SELECT * FROM users WHERE first_name LIKE "_ob"; -- Bob
+
+SELECT * FROM users WHERE first_name LIKE "J__n"; -- John
+
+SELECT * FROM users WHERE first_name LIKE "A_i_e"; -- Alice
+
+
+
+-------------------------------------------------------
+
+
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INT
+);
+
+INSERT INTO users (first_name, last_name, email, password, age)
+VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25),
+       ("John", "Doe", "john.doe@example.com", "password", 30),
+       ("Bob", "Smith", "bob.smith@example.com", "password", 35),
+       ("Alice", "Brown", "alice.brown@example.com", "password", 40),
+       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45),
+       ("David", "Johnson", "david.johnson@example.com", "password", 50),
+       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
+
+-- SELECT * FROM users;
+
+-- SELECT first_name FROM users ORDER BY first_name ASC;
+-- SELECT first_name FROM users ORDER BY first_name DESC;
+-- SELECT age FROM users ORDER BY age ASC;
+
+-- SELECT first_name FROM users ORDER BY LENGTH(first_name) ASC;
+
+-- SELECT first_name FROM users;
+-- SELECT first_name FROM users LIMIT 5;
+
+SELECT first_name FROM users ORDER BY LENGTH(first_name) DESC LIMIT 5;
 
 
 -------------------------------------------------------
