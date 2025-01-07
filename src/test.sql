@@ -1,5 +1,69 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+-- DROP TABLE users;
+
+CREATE TABLE series (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) UNIQUE, -- 👈🏻
+    release_year INT
+);
+
+INSERT INTO series (title, release_year)
+VALUES ("series #1", 2001),
+       ("series #2", 2002),
+       ("series #10", 2010);
+
+SELECT * FROM series;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
@@ -29,52 +93,6 @@ SELECT first_name, age,
         ELSE "Senior"
     END AS age_group
 FROM users;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
