@@ -22,7 +22,13 @@ VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25),
 SELECT * FROM users;
 
 
-
+SELECT first_name, age,
+    CASE 
+        WHEN age < 30 THEN "Young" 
+        WHEN age >= 30 AND age < 60 THEN "Middle-aged"
+        ELSE "Senior"
+    END AS age_group
+FROM users;
 
 
 
