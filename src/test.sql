@@ -1,5 +1,66 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY AUTO_INCREMENT,
+    emp_name VARCHAR(50),
+    emp_age INT CHECK (emp_age >= 18 AND emp_age <= 65),
+    emp_salary DECIMAL(10,2) CHECK (emp_salary > 0)
+);
+
+INSERT INTO employees (emp_name, emp_age, emp_salary)
+VALUES ("John Doe", 30, 5000.00),
+       ("Jane Doe", 25, 4000.00),
+       ("Bob Smith", 35, 6000.00);
+
+SELECT * FROM employees;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
 -- DROP TABLE users;
 
 CREATE TABLE series (
@@ -14,51 +75,6 @@ VALUES ("series #1", 2001),
        ("series #10", 2010);
 
 SELECT * FROM series;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 -------------------------------------------------------
