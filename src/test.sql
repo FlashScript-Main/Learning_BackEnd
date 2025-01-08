@@ -1,19 +1,21 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+DROP TABLE employees;
+
 CREATE TABLE employees (
     emp_id INT PRIMARY KEY AUTO_INCREMENT,
     emp_name VARCHAR(50),
-    emp_age INT CHECK (emp_age >= 18 AND emp_age <= 65),
-    emp_salary DECIMAL(10,2) CHECK (emp_salary > 0)
+    emp_age INT,
+    emp_salary DECIMAL(10,2),
+    CONSTRAINT chk_emp_age CHECK (emp_age >= 18 AND emp_age <= 65),
+    CONSTRAINT chk_emp_salary CHECK (emp_salary > 0)
 );
 
 INSERT INTO employees (emp_name, emp_age, emp_salary)
-VALUES ("John Doe", 30, 5000.00),
-       ("Jane Doe", 25, 4000.00),
-       ("Bob Smith", 35, 6000.00);
+VALUES ("HuXn", 16, 5000.00);
 
-SELECT * FROM employees;
-
+INSERT INTO employees (emp_name, emp_age, emp_salary)
+VALUES ("HuXn", 25, -5000.00);
 
 
 
