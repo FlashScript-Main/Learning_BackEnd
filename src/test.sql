@@ -1,5 +1,64 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    age INT
+);
+
+INSERT INTO users (name, age)
+VALUES ("Bob", 30),
+       ("Charlie", 40),
+       ("David", 50);
+
+SELECT * FROM users;
+
+-- ALTER TABLE users DROP COLUMN age;
+-- ALTER TABLE users MODIFY name VARCHAR(255);
+-- ALTER TABLE users CHANGE COLUMN name user_name VARCHAR(50);
+-- ALTER TABLE users ADD email VARCHAR(255) NOT NULL;
+
+SELECT * FROM users;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
 DROP TABLE employees;
 
 CREATE TABLE employees (
@@ -16,47 +75,6 @@ VALUES ("HuXn", 16, 5000.00);
 
 INSERT INTO employees (emp_name, emp_age, emp_salary)
 VALUES ("HuXn", 25, -5000.00);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
