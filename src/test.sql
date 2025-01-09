@@ -36,6 +36,74 @@ SELECT * FROM engineers;
 SELECT * FROM tasks;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
+-- DROP TABLE tasks;
+-- DROP TABLE engineers;
+
+CREATE Table engineers (
+    engineer_id INT PRIMARY KEY AUTO_INCREMENT,
+    engineer_name VARCHAR(255) NOT NULL,
+    profession VARCHAR(255) NOT NULL,
+    email VARCHAR(50)
+);
+
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY AUTO_INCREMENT,
+    task_name VARCHAR(255),
+    task_description TEXT,
+    engineer_id INT,
+    FOREIGN KEY (engineer_id) REFERENCES engineers(engineer_id) 
+);
+
+
+INSERT INTO engineers (engineer_name, profession, email)
+VALUES ("Alice Johnson", "Full Stack", "alice@gmail.com"),
+       ("Bob Smith", "Back End", "bob@gmail.com"),
+       ("Charlie Brown", "Front End", "charlie@gmail.com"),
+       ("David Hanson", "DevOps", "david@gmail.com");
+
+INSERT INTO tasks (task_name, task_description, engineer_id)
+VALUES ("Task #1", "Design the UI in Figma", 1),
+       ("Task #2", "Build the Server in Bun", 2),
+       ("Task #3", "Code the UI in Tailwind CSS", 1);
+
+
+SELECT * FROM engineers;
+
+SELECT * FROM tasks;
+
+
 -------------------------------------------------------
 
 
