@@ -1,5 +1,59 @@
 -- 🔻 This is the "test.sql" File 🔻
 
+USE games;
+SELECT DATABASE();
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    age INT
+);
+
+INSERT INTO users (first_name, last_name, email, password, age)
+VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25), 
+       ("John", "Doe", "john.doe@example.com", "password", 30), 
+       ("Bob", "Smith", "bob.smith@example.com", "password", 35), 
+       ("Alice", "Brown", "alice.brown@example.com", "password", 40), 
+       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45), 
+       ("David", "Johnson", "david.johnson@example.com", "password", 50), 
+       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
+
+SELECT * FROM users;
+
+SELECT first_name FROM users ORDER BY first_name DESC;
+
+SELECT * FROM users WHERE first_name LIKE "Em___"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
 -- DROP TABLE tasks;
 -- DROP TABLE engineers;
 
@@ -34,35 +88,6 @@ VALUES ("Task #1", "Design the UI in Figma", 1),
 SELECT * FROM engineers;
 
 SELECT * FROM tasks;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 -------------------------------------------------------
