@@ -1,41 +1,31 @@
 -- 🔻 This is the "test.sql" File 🔻
 
-USE games;
-SELECT DATABASE();
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     age INT
 );
 
-INSERT INTO users (first_name, last_name, email, password, age)
-VALUES ("Jane", "Doe", "jane.doe@example.com", "password", 25), 
-       ("John", "Doe", "john.doe@example.com", "password", 30), 
-       ("Bob", "Smith", "bob.smith@example.com", "password", 35), 
-       ("Alice", "Brown", "alice.brown@example.com", "password", 40), 
-       ("Charlie", "Smith", "charlie.smith@example.com", "password", 45), 
-       ("David", "Johnson", "david.johnson@example.com", "password", 50), 
-       ("Emily", "Brown", "emily.brown@example.com", "password", 55);
+INSERT INTO users (name, age)
+VALUES ('John', 25),
+       ('Jane', 30),
+       ('Bob', 35);
 
 SELECT * FROM users;
 
-SELECT first_name FROM users ORDER BY first_name DESC;
+ALTER TABLE users DROP COLUMN age;
+SELECT * FROM users;
 
-SELECT * FROM users WHERE first_name LIKE "Em___"
+ALTER TABLE users MODIFY name VARCHAR(255);
+SELECT * FROM users;
 
+ALTER TABLE users 
+CHANGE COLUMN name 
+user_name VARCHAR(50);
+SELECT * FROM users;
 
-
-
-
-
-
-
-
-
-
+ALTER TABLE users ADD email VARCHAR(255) NOT NULL;
+SELECT * FROM users;
 
 
 
