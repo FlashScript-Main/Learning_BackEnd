@@ -33,22 +33,16 @@ VALUES ("Task #1", "Design the UI in Figma", 1),
        ("Task #3", "Code the UI in Tailwind CSS", 1);
 
 
--- 🔸 INNER JOIN 🔸
--- 🔹 An Inner Join selects records that have matching values in both tables. 🔹
+-- 🔸 RIGHT JOIN 🔸
+-- 🔹 A right join returns all records from the right table ("tasks" table),
+-- and matched records from the left table ("engineers" table). 🔹
+-- 🔹 If there is no match, the result will contain NULL values for the left table columns. 🔹
 
 -- ⚡ Basic Format ⚡
--- SELECT * FROM table1 INNER JOIN table2 ON table1.specific_id=table2.specific_id;
+-- SELECT * FROM table1 RIGHT JOIN table2 ON table1.specific_id=table2.specific_id;
 
-SELECT * FROM engineers INNER JOIN tasks ON engineers.engineer_id=tasks.engineer_id;
-
-
--- Providing Aliase for the "engineers" & "tasks" tables
-SELECT * FROM engineers e INNER JOIN tasks t ON e.engineer_id=t.engineer_id;
-
-
--- We can Also Select specific column
-SELECT task_name, engineer_name, task_description FROM engineers e 
-INNER JOIN tasks t 
+SELECT * FROM engineers e
+RIGHT JOIN tasks t 
 ON e.engineer_id=t.engineer_id;
 
 
@@ -106,6 +100,44 @@ ON e.engineer_id=t.engineer_id;
 
 
 
+
+
+-------------------------------------------------------
+
+
+-- 🔸 LEFT JOIN 🔸
+-- 🔹 A left join returns all records from the left table ("enginners" table) 
+-- and matched records from the right table ("tasks" table). 🔹
+-- 🔹 If there is no match, the result will contain NULL values for the right table columns. 🔹
+
+-- ⚡ Basic Format ⚡
+-- SELECT * FROM table1 LEFT JOIN table2 ON table1.specific_id=table2.specific_id;
+
+SELECT * FROM engineers e
+LEFT JOIN tasks t 
+ON e.engineer_id=t.engineer_id;
+
+
+-------------------------------------------------------
+
+
+-- 🔸 INNER JOIN 🔸
+-- 🔹 An Inner Join selects records that have matching values in both tables. 🔹
+
+-- ⚡ Basic Format ⚡
+-- SELECT * FROM table1 INNER JOIN table2 ON table1.specific_id=table2.specific_id;
+
+SELECT * FROM engineers INNER JOIN tasks ON engineers.engineer_id=tasks.engineer_id;
+
+
+-- Providing Aliase for the "engineers" & "tasks" tables
+SELECT * FROM engineers e INNER JOIN tasks t ON e.engineer_id=t.engineer_id;
+
+
+-- We can Also Select specific column
+SELECT task_name, engineer_name, task_description FROM engineers e 
+INNER JOIN tasks t 
+ON e.engineer_id=t.engineer_id;
 
 
 
