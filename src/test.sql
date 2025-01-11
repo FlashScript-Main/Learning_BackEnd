@@ -33,12 +33,114 @@ VALUES ("Task #1", "Design the UI in Figma", 1),
        ("Task #3", "Code the UI in Tailwind CSS", 1);
 
 
--- 🔻 JOINs 🔻
--- 🔹 so now that we know what in the world are one to many relationship 
--- but now let's talk about something called the "JOIN" 
--- so like we know that both of these tables are in the relationship 
--- but how can we tell and to tell so for that we are going to be using something 
--- called The "JOIN" 🔹
+-- 🔸 INNER JOIN 🔸
+-- 🔹 An Inner Join selects records that have matching values in both tables. 🔹
+
+-- ⚡ Basic Format ⚡
+-- SELECT * FROM table1 INNER JOIN table2 ON table1.specific_id=table2.specific_id;
+
+SELECT * FROM engineers INNER JOIN tasks ON engineers.engineer_id=tasks.engineer_id;
+
+
+-- Providing Aliase for the "engineers" & "tasks" tables
+SELECT * FROM engineers e INNER JOIN tasks t ON e.engineer_id=t.engineer_id;
+
+
+-- We can Also Select specific column
+SELECT task_name, engineer_name, task_description FROM engineers e 
+INNER JOIN tasks t 
+ON e.engineer_id=t.engineer_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+
+
+-- DROP TABLE tasks;
+-- DROP TABLE engineers;
+
+CREATE Table engineers (
+    engineer_id INT PRIMARY KEY AUTO_INCREMENT,
+    engineer_name VARCHAR(255) NOT NULL,
+    profession VARCHAR(255) NOT NULL,
+    email VARCHAR(50)
+);
+
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY AUTO_INCREMENT,
+    task_name VARCHAR(255),
+    task_description TEXT,
+    engineer_id INT,
+    FOREIGN KEY (engineer_id) REFERENCES engineers(engineer_id) 
+);
+
+
+INSERT INTO engineers (engineer_name, profession, email)
+VALUES ("Alice Johnson", "Full Stack", "alice@gmail.com"),
+       ("Bob Smith", "Back End", "bob@gmail.com"),
+       ("Charlie Brown", "Front End", "charlie@gmail.com"),
+       ("David Hanson", "DevOps", "david@gmail.com");
+
+INSERT INTO tasks (task_name, task_description, engineer_id)
+VALUES ("Task #1", "Design the UI in Figma", 1),
+       ("Task #2", "Build the Server in Bun", 2),
+       ("Task #3", "Code the UI in Tailwind CSS", 1);
 
 
 -- 🔸 CROSS JOIN 🔸
@@ -63,67 +165,6 @@ SELECT * FROM engineers, tasks;
 SELECT * FROM engineers, tasks;
 -- ❗ 👆🏻 OR 👇🏻 ❗
 SELECT * FROM engineers CROSS JOIN tasks;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 -------------------------------------------------------
