@@ -1,31 +1,116 @@
+-- 🔥 Result 🔥
+
 -- 🔻 This is the "test.sql" File 🔻
 
-CREATE TABLE users (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    age INT
+-- DROP TABLE tasks;
+-- DROP TABLE engineers;
+
+CREATE Table engineers (
+    engineer_id INT PRIMARY KEY AUTO_INCREMENT,
+    engineer_name VARCHAR(255) NOT NULL,
+    profession VARCHAR(255) NOT NULL,
+    email VARCHAR(50)
 );
 
-INSERT INTO users (name, age)
-VALUES ('John', 25),
-       ('Jane', 30),
-       ('Bob', 35);
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY AUTO_INCREMENT,
+    task_name VARCHAR(255),
+    task_description TEXT,
+    engineer_id INT,
+    FOREIGN KEY (engineer_id) REFERENCES engineers(engineer_id) 
+);
 
-SELECT * FROM users;
 
-ALTER TABLE users DROP COLUMN age;
-SELECT * FROM users;
+INSERT INTO engineers (engineer_name, profession, email)
+VALUES ("Alice Johnson", "Full Stack", "alice@gmail.com"),
+       ("Bob Smith", "Back End", "bob@gmail.com"),
+       ("Charlie Brown", "Front End", "charlie@gmail.com"),
+       ("David Hanson", "DevOps", "david@gmail.com");
 
-ALTER TABLE users MODIFY name VARCHAR(255);
-SELECT * FROM users;
+INSERT INTO tasks (task_name, task_description, engineer_id)
+VALUES ("Task #1", "Design the UI in Figma", 1),
+       ("Task #2", "Build the Server in Bun", 2),
+       ("Task #3", "Code the UI in Tailwind CSS", 1);
 
-ALTER TABLE users 
-CHANGE COLUMN name 
-user_name VARCHAR(50);
-SELECT * FROM users;
 
-ALTER TABLE users ADD email VARCHAR(255) NOT NULL;
-SELECT * FROM users;
+-- 🔻 JOINs 🔻
+-- 🔹 so now that we know what in the world are one to many relationship 
+-- but now let's talk about something called the "JOIN" 
+-- so like we know that both of these tables are in the relationship 
+-- but how can we tell and to tell so for that we are going to be using something 
+-- called The "JOIN" 🔹
+
+
+-- 🔸 CROSS JOIN 🔸
+-- 🔹 A cross join is a type of join operation 
+-- that combines each row from one table with every row from another table.
+-- It essentially creates a new result set containing 
+-- all possible combinations of rows from the joined tables. 🔹
+
+-- 🔰 HuXn said that this is NOT useful! 
+-- and you will never find yourself using a "CROSS JOIN" like ever 🔰
+
+-- ⚡ Basic Format ⚡
+-- SELECT * FROM table1 CROSS JOIN table2;
+
+SELECT * FROM engineers CROSS JOIN tasks;
+
+-- 🔥 Huge Note 🔥
+-- 🔹 instead of using a "CROSS JOIN", we can use a "," 🔹
+SELECT * FROM engineers, tasks;
+
+
+SELECT * FROM engineers, tasks;
+-- ❗ 👆🏻 OR 👇🏻 ❗
+SELECT * FROM engineers CROSS JOIN tasks;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
