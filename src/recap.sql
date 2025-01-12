@@ -1,7 +1,14 @@
--- CREATE DATABASE mydb;
--- USE mydb;
--- ALTER DATABASE mydb READ ONLY = 1;
--- DROP DATABASE mydb;
+-- ALTER DATABASE mydb READ ONLY = 0; 
 
--- to disable READ-ONLY mode, set the number to 0
-ALTER DATABASE mydb READ ONLY = 0;
+-- CREATE TABLE employees (
+-- 	employee_id INT,
+--     first_name VARCHAR(50),
+--     last_name VARCHAR(50),
+--     hourly_pay DECIMAL(3, 2), -- 123.12
+--     hire_date DATE
+-- );
+
+-- SELECT * FROM employees;
+
+-- Let's rename our "employees" table
+RENAME TABLE workers TO employees;
