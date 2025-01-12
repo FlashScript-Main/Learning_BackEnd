@@ -1,6 +1,7 @@
--- 3 ways to write in MySQL:
-SELECT -- ✅
-Select
-select
+-- CREATE DATABASE mydb;
+-- USE mydb;
+-- ALTER DATABASE mydb READ ONLY = 1;
+-- DROP DATABASE mydb;
 
--- All effect the same!
+-- to disable READ-ONLY mode, set the number to 0
+ALTER DATABASE mydb READ ONLY = 0;
