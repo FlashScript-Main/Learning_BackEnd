@@ -1,22 +1,19 @@
+-- DROP TABLE users;
+
 CREATE TABLE users (
-	user_id INT PRIMARY KEY,
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
     age INT
 );
 
-INSERT INTO users
-VALUES (NULL, "someone", 18);
+-- we could set our "PRIMARY KEY" to begin at a different value
+-- using the "ALTER" keyword
+ALTER TABLE users
+AUTO_INCREMENT = 1000;
+
+INSERT INTO users (name, age)
+VALUES ("Mike", 32),
+       ("Bob", 28),
+       ("Rose", 25);
 
 SELECT * FROM users;
-
--- if you forgot to add "PRIMARY KEY" keyword to an existing table,
--- add it using "ALTER"
-CREATE TABLE users (
-	user_id INT,
-    name VARCHAR(50),
-    age INT
-);
-
-ALTER TABLE users
-ADD CONSTRAINT 
-PRIMARY KEY(user_id);
