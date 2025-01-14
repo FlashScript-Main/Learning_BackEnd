@@ -1,4 +1,15 @@
--- if you forgot to add "DEFAULT" keyword to a table,
+CREATE TABLE users (
+	user_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+);
+
+INSERT INTO users
+VALUES (NULL, "someone", 18);
+
+SELECT * FROM users;
+
+-- if you forgot to add "PRIMARY KEY" keyword to an existing table,
 -- add it using "ALTER"
 CREATE TABLE users (
 	user_id INT,
@@ -7,4 +18,5 @@ CREATE TABLE users (
 );
 
 ALTER TABLE users
-ALTER name SET DEFAULT "unknown";
+ADD CONSTRAINT 
+PRIMARY KEY(user_id);
