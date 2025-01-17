@@ -1,117 +1,80 @@
--- ON DELETE SET NULL = when a "FOREIGN KEY" is deleted, replace "FOREIGN KEY" with NULL
--- ON DELETE CASCADE = when a "FOREIGN KEY" is deleted, delete row
+-- 🔻 Stored Procedure 🔻
+-- it is prepared SQL code that you can save
+-- great if there's a query that you write often
 
-SELECT * FROM transactions;
+-- you can use "Stored Procedure" to store a code and call it later
 
+
+-- 🔥 Basic Format 🔥
+
+-- #1 👉🏻 Create the "Stored Procedure"
+DELIMITER $$
+CREATE PROCEDURE The_Procedure_Name()
+BEGIN
+    The_Procedure_Phrase;
+END $$
+DELIMITER ;
+
+-- #2 👉🏻 "CALL" the "Stored Procedure"
+CALL The_Procedure_Name();
+
+-- 🔹 Before 🔹
 SELECT * FROM customers;
 
+-- 🔹 After 🔹
+DELIMITER $$
+CREATE PROCEDURE get_customers()
+BEGIN
+	SELECT * FROM customers;
+END $$
+DELIMITER ;
 
--- there's a foreign key that's preventing us from deleting this customer 
--- because this customer is used elsewhere in a different table
--- so just temporarily for this demonstration,
--- I'm going to set foreign key checks to be zero
-SET foreign_key_checks = 0;
-
-DELETE FROM customers
-WHERE customer_id = 4;
-
-SELECT * FROM customers;
+CALL get_customers();
 
 
--- before I forget I'm going to set foreign key checks back to one
-SET foreign_key_checks = 1;
-
-SELECT * FROM transactions;
+-- you can also Drop a Stored Procedure
+DROP PROCEDURE get_customers;
 
 
--- let's begin with "ON DELETE SET NULL"
--- I'm going to re-insert Poppy puff back into our table of customers
-INSERT INTO customers
-VALUES (4, "Poppy", "Puff");
-
-SELECT * FROM customers;
-
-
--- now with "ON DELETE SET NULL", 
--- if we're creating a new table
--- let's say I'm recreating my table of "transactions" 
--- after adding the foreign key constraint, 
--- I can add this clause 👉🏻 ON DELETE SET NULL
-
-CREATE TABLE transactions (
-	transaction_id INT PRIMARY KEY,
-    amount DECIMAL(5, 2),
-    customer_id INT,
-    order_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) -- 👈🏻 ❌,❌
-    ON DELETE SET NULL
-);
-
--- that's if I'm creating a new table 
--- but I already do have a transactions table I don't want to update it
+-- let's try another example
+-- this time we will send our procedure a piece of data 
+-- within the set of parentheses 
+-- a "customer_id" number such as 1 2 3 4 so on and so forth
+-- we will get a customer by their "customer_id"
+DELIMITER $$
+CREATE PROCEDURE find_customer(IN id INT)
+BEGIN
+	SELECT * FROM customers
+    WHERE customer_id = id;
+END $$
+DELIMITER ;
 
 
--- however we can update an existing table with this Clause 
--- I already do have a foreign key constraint,
--- I'm just going to drop it real quick
-ALTER TABLE transactions 
-DROP FOREIGN KEY transactions_ibfk_1;
+-- 🔹 Before 🔹
+SELECT * FROM customers
+WHERE customer_id = 3;
+
+-- 🔹 After 🔹
+CALL find_customer(3);
 
 
--- and that key is now dropped 
--- we are going to add a foreign key constraint to our transactions table 
--- with this clause 👉🏻 ON DELETE SET NULL
-
-ALTER TABLE transactions
-ADD CONSTRAINT fk_customer_id
-FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
-ON DELETE SET NULL;
-
--- if I delete a "customer_id" from customers table,
--- the foreign key of that row will be set to "NULL" automatically
-
-
--- let's take a look at our transactions table
-SELECT * FROM transactions;
+-- this time we will send two arguments, two pieces of data 
+-- a first name and a last name
+DELIMITER $$
+CREATE PROCEDURE find_customer_by_name(
+				     IN first_customer_name VARCHAR(50), 
+                     IN last_customer_name VARCHAR(50)
+				    )
+BEGIN
+	SELECT * FROM customers
+    WHERE first_name = first_customer_name AND last_name = last_customer_name;
+END $$
+DELIMITER ;
 
 
-DELETE FROM customers
-WHERE customer_id = 4;
+-- 🔹 Before 🔹
+SELECT * FROM customers
+WHERE first_name = "Larry" AND last_name = "Lobster";
 
-SELECT * FROM transactions;
-
-
--- now there's "ON DELETE CASCADE" 
--- when a foreign key is deleted we can instead delete the entire row 
--- let's go ahead and add poppy puff back to our customers table
-INSERT INTO customers
-VALUES (4, "Poppy", "Puff");
-
-SELECT * FROM customers;
-
-
--- Let's drop the current foreign key constraint of our transactions table
-ALTER TABLE transactions 
-DROP FOREIGN KEY fk_customer_id;
-
-
--- and that key is now gone 
--- we will add the "ON DELETE CASCADE" to a table that already exists
-ALTER TABLE transactions
-ADD CONSTRAINT fk_transactions_id
-FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
-ON DELETE CASCADE;
-
--- -- Let's update the customer_id
-UPDATE transactions
-SET customer_id = 4
-WHERE transaction_id = 1005;
-
-SELECT * FROM transactions;
-
-
--- Now, let's delete the foreign key
-DELETE FROM customers
-WHERE customer_id = 4;
-
-SELECT * FROM transactions;
+-- 🔹 After 🔹
+CALL find_customer_by_name("Larry", "Lobster");
