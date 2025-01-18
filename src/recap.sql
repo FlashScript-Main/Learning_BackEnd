@@ -137,3 +137,24 @@ SET hourly_pay = 100
 WHERE employee_id = 1;
 
 SELECT * FROM expenses;
+
+
+CREATE TABLE tasks (
+    task_id INT PRIMARY KEY AUTO_INCREMENT,
+    task_name VARCHAR(255),
+    task_description TEXT,
+    engineer_id INT,
+    FOREIGN KEY (engineer_id) REFERENCES engineers(engineer_id) 
+);
+
+
+INSERT INTO engineers (engineer_name, profession, email)
+VALUES ("Alice Johnson", "Full Stack", "alice@gmail.com"),
+       ("Bob Smith", "Back End", "bob@gmail.com"),
+       ("Charlie Brown", "Front End", "charlie@gmail.com"),
+       ("David Hanson", "DevOps", "david@gmail.com");
+
+INSERT INTO tasks (task_name, task_description, engineer_id)
+VALUES ("Task #1", "Design the UI in Figma", 1),
+       ("Task #2", "Build the Server in Bun", 2),
+       ("Task #3", "Code the UI in Tailwind CSS", 1);
