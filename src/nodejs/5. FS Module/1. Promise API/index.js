@@ -8,93 +8,78 @@
     You can also use it to create, delete, and rename files 🔹
 */
 
+
 import * as fs from "fs/promises";
 
-import fs from "fs";
-
 /*
-    🔹 You can use the "fs.readFile()" method to read a file 🔹
-*/
-fs.readFile("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (err, data) => {
-    if (err) throw err;
-    console.log(data.toString());
-});
+// Creating a Directory/Folder
+try {
+    // mkdir() method is used to create a directory
+    await fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test");
+    console.log("'Test' Folder Has Been Created!");
+} 
+catch (error) {
+    console.log(error)
+}
 
-/*
-    🔹 You can use the "fs.writeFile()" method to write a file 🔹
-*/
-fs.writeFile("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", "Hello World!", (err) => {
-    if (err) throw err;
-    console.log("File written successfully!");
-});
 
-/*
-    🔹 You can use the "fs.appendFile()" method to append data to a file 🔹
-*/
-fs.appendFile("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", "Hello World!", (err) => {
-    if (err) throw err;
-    console.log("File appended successfully!");
-});
+// Let's See how the Error would look like
+try {
+    await fs.mkdir("c:/something");
+} 
+catch (error) {
+    console.log(error);
+}
 
-/*
-    🔹 You can use the "fs.exists()" method to check if a file exists 🔹
-*/
-fs.exists("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (exists) => {
-    if (exists) {
-        console.log("The file exists!");
-    } else {
-        console.log("The file does not exist!");
+// If you want to create multiple folder you can use the "recursive" option
+try {
+    await fs.mkdir(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/one/two/three", 
+        { recursive: true }
+    );
+    console.log("'one' & 'two' & 'three' Folders Has Been Created!");
+} 
+catch (error) {
+    console.log(error)
+}
+
+// Reading the Content of a Directory/Folder
+try {
+    // readdir() method is used to read the content of a directory
+    const files = await fs.readdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test");
+
+    // Next we need to loop through the files and print them out
+    for (const file of files) {
+        console.log(file);
     }
-});
+} 
+catch (error) {
+    console.log(error)
+}
 
-/*
-    🔹 You can use the "fs.mkdir()" method to create a directory 🔹
-*/
-fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (err) => {
-    if (err) throw err;
-    console.log("Directory created successfully!");
-});
 
-/*                               
-    🔹 You can use the "fs.rmdir()" method to delete a directory 🔹
-*/
-fs.rmdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (err) => {
-    if (err) throw err;
-    console.log("Directory deleted successfully!");
-});     
+// Removing a Directory/Folder
+try {
+    // 🔥 Note 🔥
+    // 🔹 if you want to remove a folder, first of all,
+    // it should be empty 🔹
+    
+    // rmdir() method is used to remove a directory
+    await fs.rmdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/remove_me");
 
-/*
-    🔹 You can use the "fs.readdir()" method to read the contents of a directory 🔹
+    console.log("'remove_me' Folder Has Been Removed!");
+} 
+catch (error) {
+    console.log(error)
+}
 */
-fs.readdir("c:/Users/Admin/Desktop/nodejs/5. FS Module", (err, files) => {
-    if (err) throw err;
-    console.log(files);
-});
 
-/*
-    🔹 You can use the "fs.rename()" method to rename a file 🔹
-*/
-fs.rename("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", "c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js.bak", (err) => {
-    if (err) throw err;
-    console.log("File renamed successfully!");
-});
-
-/*
-    🔹 You can use the "fs.stat()" method to get information about a file 🔹
-*/
-fs.stat("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (err, stats) => {
-    if (err) throw err;
-    console.log(stats);
-});
-
-/*
-    🔹 You can use the "fs.unlink()" method to delete a file 🔹
-*/
-fs.unlink("c:/Users/Admin/Desktop/nodejs/5. FS Module/index.js", (err) => {
-    if (err) throw err;
-    console.log("File deleted successfully!");
-});
-
-/*
-    🔹 You can use the "fs.watch()" method to monitor file changes 🔹   
-*/
+// Creating a Directory/Folder
+try {
+    // mkdir() method is used to create a directory
+    await fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test");
+    console.log("'Test' Folder Has Been Created!");
+} 
+catch (error) {
+    console.log(error)
+}
