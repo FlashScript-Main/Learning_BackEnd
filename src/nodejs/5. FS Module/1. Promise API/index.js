@@ -72,14 +72,56 @@ try {
 catch (error) {
     console.log(error)
 }
-*/
 
-// Creating a Directory/Folder
+// Create and Write Files
 try {
-    // mkdir() method is used to create a directory
-    await fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test");
-    console.log("'Test' Folder Has Been Created!");
+        // 🔹 Here we are creating the "create_me" Folder 
+        // and adding a file as "README.md" inside the Folder 
+        // which has the "Hello Node.js" Text within it 🔹
+
+    await fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me");
+
+    // writeFile() method is used to create a directory and add files inside them
+    await fs.writeFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "Hello Node.js"
+    )
+
+    console.log("'create_me' Folder & 'README.md' File Have Been Created!");
 } 
 catch (error) {
     console.log(error)
 }
+
+
+// Replace the Text within Created File
+try {
+        // 🔹 Here we are replacing all of the Text of "README.md" File
+        // From "Hello Node.js" to "Hello FlashScript" 🔹
+
+    await fs.writeFile(
+        // The "README.md" File already exists 👇🏻
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "Hello FlashScript"
+    )
+
+    console.log("The Text Has Been Changed!");
+} 
+catch (error) {
+    console.log(error)
+}
+
+
+// Reading a File
+try {
+    const data = await fs.readFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "utf8"
+    );
+    
+    console.log(`Reading the Data: ${data}`);
+} 
+catch (error) {
+    console.log(error)
+}
+*/
