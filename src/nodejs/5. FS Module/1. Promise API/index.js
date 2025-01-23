@@ -11,7 +11,6 @@
 
 import * as fs from "fs/promises";
 
-/*
 // Creating a Directory/Folder
 try {
     // mkdir() method is used to create a directory
@@ -155,7 +154,6 @@ try {
 catch (error) {
     console.log(error)
 }
-*/
 
 
 try {
@@ -178,14 +176,58 @@ catch (error) {
 }
 
 
-// Reading a File
+// Copying a File
 try {
-    const data = await fs.readFile(
-        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
-        "utf8"
+        // 🔹 Copying all the Contents from "README.md" file to the "info.txt" file
+        // the "info.txt" file will be created by "copyFile()" method 🔹
+
+    await fs.copyFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md", // The File
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/info.txt" // The Copy to File
     );
-    
-    console.log(`Reading the Data: ${data}`);
+  
+    console.log("Copy Has Been Successful!");
+} 
+catch (error) {
+    console.log(error)
+}
+
+
+// Getting the information of a File (Statistics of a File)
+try {
+    const info = await fs.stat(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md"
+    );
+
+    console.log(`Info: ${info}`);
+    console.log(`Is Directory/Folder or File: ${info.isDirectory()}`);
+    console.log(`Is Directory/Folder or File: ${info.isFile()}`);
+} 
+catch (error) {
+    console.log(error)
+}
+
+// Renaming a File
+try {
+    // 🔹 Renaming the "README.md" File to "info.txt" 🔹
+    await fs.rename(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/info.txt"
+    );
+    console.log("'README.md' File Has Been Renamed to 'info.txt'");
+} 
+catch (error) {
+    console.log(error)
+}
+
+
+// Deleting a File
+try {
+    // 🔹 Deleting the "info.txt" File 🔹
+    await fs.unlink(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/info.txt"
+    );
+    console.log("'info.txt' File Has Been Deleted!");
 } 
 catch (error) {
     console.log(error)
