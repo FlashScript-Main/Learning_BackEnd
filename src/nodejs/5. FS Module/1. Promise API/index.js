@@ -124,4 +124,69 @@ try {
 catch (error) {
     console.log(error)
 }
+
+
+// Appending the Data to the File (without overwriting it)
+try {
+    await fs.mkdir("c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me");
+    console.log("'create_me' Directory Created");
+
+    await fs.writeFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "Hello Node.js"
+    )
+    console.log("'README.md' File Created");
+
+    // appendFile() method is used to append data to a file
+    await fs.appendFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "Hello FlashScript"
+    )
+    console.log("'README.md' File Appended");
+
+    console.log("---------------------------------------");
+
+    const data = await fs.readFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "utf8"
+    );
+    console.log(`Reading the Data: ${data}`);
+} 
+catch (error) {
+    console.log(error)
+}
 */
+
+
+try {
+    await fs.appendFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "Node.js is the BEST!"
+    )
+    console.log("'README.md' File Appended");
+
+    console.log("---------------------------------------");
+
+    const data = await fs.readFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "utf8"
+    );
+    console.log(`Reading the Data: ${data}`);
+} 
+catch (error) {
+    console.log(error)
+}
+
+
+// Reading a File
+try {
+    const data = await fs.readFile(
+        "c:/Users/Admin/Desktop/nodejs/5. FS Module/1. Promise API/test/create_me/README.md",
+        "utf8"
+    );
+    
+    console.log(`Reading the Data: ${data}`);
+} 
+catch (error) {
+    console.log(error)
+}
