@@ -1,0 +1,10 @@
+/* Root 👉🏻 "public" Folder 👉🏻 style.css */
+
+body {
+    background-color: rgb(0, 34, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: rgb(12, 194, 255);
+}
