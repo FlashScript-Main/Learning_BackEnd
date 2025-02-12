@@ -1,25 +1,22 @@
-/*
-    🔸 MongoDB Collection Information 🔸
-
-    1️⃣ 👉🏻 Open CMD 
-    2️⃣ 👉🏻 Type "mongosh"
-    3️⃣ 👉🏻 Type "show dbs"
-    4️⃣ 👉🏻 Type "db.getName()"
-    5️⃣ 👉🏻 JavaScript in MongoDB
-    6️⃣ 👉🏻 JSON in MongoDB
-*/
+// Root 👉🏻 index.js
 
 
-/*
-    🔸 show.dbs 🔸
-    🔹 allows us to show or to check all of our databases 🔹
+import express from "express";
+import path from "path";
 
-    🔸 db.getName() 🔸
-    🔹 allows us to get the name of the database we are currently in 🔹
+// Atlast, import the routes
+import route from "./routes/route.js";
 
-    🔸 db.Collection-Name.insertOne() 🔸
-    🔹 Insert a new Collection to our database 🔹
 
-    🔸 show collections 🔸
-    🔹 allows us to show all of our collections 🔹
-*/
+const app = express();
+
+
+app.set("view engine", "ejs");
+
+
+app.use("/", route);
+
+
+app.listen(8000, () => {
+    console.log("Server is running on port 8000");
+});
