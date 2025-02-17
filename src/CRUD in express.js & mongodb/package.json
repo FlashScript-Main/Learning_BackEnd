@@ -1,22 +1,20 @@
 {
-  "name": "mongodb-crud-demo",
+  "name": "nodemongodb",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ajyounguk/mongodb-crud-demo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ajyounguk/mongodb-crud-demo/issues"
-  },
-  "homepage": "https://github.com/ajyounguk/mongodb-crud-demo#readme",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "mongoose": "^5.13.15"
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0",
+    "mongodb": "^3.3.2",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.2"
   }
 }
