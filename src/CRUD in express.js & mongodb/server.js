@@ -1,43 +1,23 @@
-const express = require("express");
-const cors = require("cors");
+require('./models/db');
 
-const app = express();
+const express = require('express');
+const path = require('path');
+const exphbs = require('express-handlebars');
+const bodyparser = require('body-parser');
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+const employeeController = require('./controllers/employeeController');
 
-app.use(cors(corsOptions));
+var app = express();
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
+app.use(bodyparser.json());
+app.set('views', path.join(__dirname, '/views/'));
+app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
+app.set('view engine', 'hbs');
 
-// parse requests of content-type - application/json
-app.use(express.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-
-const db = require("./app/models");
-db.mongoose
-  .connect(db.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Connected to the database!");
-  })
-  .catch(err => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+app.listen(3000, () => {
+    console.log('Express server started at port : 3000');
 });
 
-require("./app/routes/turorial.routes")(app);
-
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+app.use('/employee', employeeController);
