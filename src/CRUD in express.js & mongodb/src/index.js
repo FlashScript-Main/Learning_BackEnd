@@ -1,5 +1,5 @@
-import app from "./app";
-import "./utils/mongoose";
+import { config } from 'dotenv';
+import { executeStudentCrudOperations } from './studentsCrud.js';
 
-app.listen(app.get("port"));
-console.log(`server on port ${app.get("port")}`);
+config();
+await executeStudentCrudOperations();
