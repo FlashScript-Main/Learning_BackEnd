@@ -1,42 +1,58 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+require('dotenv').config()
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const SocketServer = require('./socketServer');
+const corsOptions = {
+  Credential: 'true',
+  
+};
 
-// create express app
-var app = express();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+const app = express();
 
-// parse application/json
-app.use(bodyParser.json())
+app.use(express.json())
+app.options("*" , cors(corsOptions));
+app.use(cors(corsOptions));
+app.use(cookieParser())
 
-// Configuring the database
-var dbConfig = require('./config/database.config.js');
-var mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+//#region // !Socket
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
-mongoose.connect(dbConfig.url, {
-	useMongoClient: true
-});
 
-mongoose.connection.on('error', function() {
-    console.log('Could not connect to the database. Exiting now...');
-    process.exit();
-});
-mongoose.connection.once('open', function() {
-    console.log("Successfully connected to the database");
+
+io.on('connection', socket => {
+    SocketServer(socket);
 })
 
-// define a simple route
-app.get('/', function(req, res){
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
-});
+//#endregion
 
-require('./app/routes/note.routes.js')(app);
-require('./app/routes/location.routes.js')(app);
+//#region // !Routes
+app.use('/api', require('./routes/authRouter'));
+app.use('/api', require('./routes/userRouter'));
+app.use('/api', require('./routes/postRouter'));
+app.use('/api', require('./routes/commentRouter'));
+app.use('/api', require('./routes/adminRouter'));
+app.use('/api', require('./routes/notifyRouter'));
+app.use('/api', require('./routes/messageRouter'));
+//#endregion
 
-// listen for requests
-app.listen(3000, function(){
-    console.log("Server is listening on port 3000");
+
+const URI = process.env.MONGODB_URL;
+mongoose.connect(URI, {
+    useCreateIndex:true,
+    useFindAndModify:false,
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}, err => {
+    if(err) throw err;
+    console.log("Database Connected!!")
+})
+
+const port = process.env.PORT || 8080;
+http.listen(port, () => {
+  console.log("Listening on ", port);
 });
